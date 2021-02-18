@@ -10,9 +10,16 @@ api = Api(app)
 todos = {}
 
 
-@app.route('/notes', methods=['GET', 'POST', 'DELETE'])
+@app.route('/notes', methods=['GET', 'POST', 'DELETE', 'PUT'])
 def getURL():
     if request.method == 'POST':
+        id = request.form['id']
+        data = request.form['data']
+        print(id, data)
+        todos[id] = data
+        return {id: data}
+
+    if request.method == 'PUT':
         id = request.form['id']
         data = request.form['data']
         print(id, data)
